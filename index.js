@@ -7,8 +7,17 @@ const rl = readline.createInterface({
     output: process.stdout  
 })
 
-rl.question('',(answer)=>{
-    let splitAnswer = answer.split('');
-    console.log(splitAnswer);
-    rl.close();
-})
+const openPrompt=()=>{
+    rl.question('',(answer)=>{
+        let splitAnswer = answer.split('');
+        console.log(splitAnswer);
+        openPrompt();
+        rl.close();
+    });
+}
+
+const startNode=()=>{
+    openPrompt();
+}
+
+startNode();
