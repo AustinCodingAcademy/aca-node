@@ -51,7 +51,7 @@ const nodePlayground = (answer) => {
       return `${firstTerm}${splitAnswer[1]}${secondTerm}=${firstTerm!==secondTerm}`       
     }
     else if(splitAnswer[1]=='='){
-      if(variableSpace[firstTerm] && variableSpace[firstTerm].type == 'const'){
+      if(variableSpace[splitAnswer[0]] && variableSpace[splitAnswer[0]].type == 'const'){
         return "TypeError: Assignment to constant variable"
       }
       variableSpace[splitAnswer[0]] = {value: splitAnswer[2],type:variableSpace[splitAnswer[0]].type}
@@ -64,8 +64,11 @@ const nodePlayground = (answer) => {
     const varType = splitAnswer[0];
     const varName = splitAnswer[1];
     const varValue = splitAnswer[3];
+    if (!(varType=="const" || varType == "let" || varType == "var") ){
+      return "SyntaxError: Unexpected identifier, " + varType
+    }
     if(variableSpace[varName]  && variableSpace[varName].type == "const"){
-      return "TypeError: Assignment to constant variable"
+      return `SyntaxError: Identifier, ${varName}, has already been declared`
     } 
     variableSpace[splitAnswer[1]] = {value:splitAnswer[3],type:splitAnswer[0]}
     return varValue
