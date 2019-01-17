@@ -11,6 +11,9 @@ const rl = readline.createInterface({
 const nameTester = (name,index) => {
   if(variableSpace[index]){
     return Number(name.value);
+  }else if(index==="true"||index==="false"){
+    return JSON.parse(index)
+
   }
 }
 
@@ -21,6 +24,12 @@ const nodePlayground = (answer) => {
   // on a join, interal spacing is important. If they run everything together,
   // and have no spacing, we will not save the user from this
   if(splitAnswer.length==3){
+
+    // console.log(JSON.parse(splitAnswer[0]))
+    // console.log(Number(JSON.parse(splitAnswer[0])))
+    // console.log(isNaN(Number(JSON.parse(splitAnswer[0]))))
+
+
     // if we split the string and there are 3 bits, some kind of math or logic
     // was done, test for what kinda logic we need to do.
     const firstTerm = isNaN(Number(splitAnswer[0]))? nameTester(variableSpace[splitAnswer[0]],splitAnswer[0]) : Number(splitAnswer[0]);
@@ -93,6 +102,10 @@ const nodePlayground = (answer) => {
       return `SyntaxError: Identifier, ${varName}, has already been declared`
     } 
 
+    if(!isNaN(varName)){
+      return `SyntaxError: Unexpected number, ${varName}, invalid variable name`
+    }
+
     // finally, if it doesn't exist and is the correct variable type
     // create namespace object with name as key to data object, 
     // data object tells what kind of datatype and its value
@@ -125,5 +138,6 @@ const getPrompt = () => {
 
 // container of all created varibles
 const variableSpace = {};
+
 
 getPrompt();
