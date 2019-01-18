@@ -15,52 +15,64 @@ const rl = readline.createInterface({
 const openPrompt=()=>{
     rl.question('',(answer)=>{
         let splitAnswer = answer.split(' ');
-        //trim spaces here
-        // console.log(splitAnswer)
-        lookForSymbol(splitAnswer);
-        // splitUpInputs(splitAnswer);
-        // console.log(splitAnswer);
+        separateStuff(splitAnswer);
         openPrompt();
-        // rl.close();
     });
 }
 
-const lookForSymbol=(splitArray)=>{
-    const theSymbol = splitArray[1]
-    const firstInput = Number(splitArray[0]);
-    const secondInput = Number(splitArray[2]);
-    if(theSymbol === '+'){
-        console.log(firstInput + secondInput)
+const variable = {
+    name: '',
+    value: '',
+}
+
+const separateStuff=(splitArray)=>{
+    const indexZero = splitArray[0];
+    const indexOne = splitArray[1]
+    const indexTwo = splitArray[2];
+    const indexThree = splitArray[3];
+    if(!isNaN(Number(indexZero)) && !isNaN(Number(indexTwo))){
+        if(indexOne === '+'){
+            console.log(Number(indexZero) + Number(indexTwo))
+        }
+        if(indexOne === '-'){
+            console.log(Number(indexZero) - Number(indexTwo))
+        }
+        if(indexOne === '*'){
+            console.log(Number(indexZero) * Number(indexTwo))
+        }
+        if(indexOne === '/'){
+            console.log(Number(indexZero) / Number(indexTwo))
+        }
+        if(indexOne === '>'){
+            if(Number(indexZero) > Number(indexTwo)){
+                console.log('true')
+            }else console.log('false')
+        }
+        if(indexOne === '<'){
+            if(Number(indexZero) < Number(indexTwo)){
+                console.log('true')
+            }else console.log('false')
+        }
+        if(indexOne === '==='){
+            if(Number(indexZero) === Number(indexTwo)){
+                console.log('true')
+            }else console.log('false')
+        }
+        if(indexOne === '!=='){
+            if(Number(indexZero) !== Number(indexTwo)){
+                console.log('true')
+            }else console.log('false')
+        }
+    }else if(indexZero === 'let' && indexTwo === '='){
+        variable.value = indexThree;
+        variable.name = indexOne;
+    }else if(indexZero === variable.name){
+        console.log(variable.value)
     }
-    if(theSymbol === '-'){
-        console.log(firstInput - secondInput)
-    }
-    if(theSymbol === '*'){
-        console.log(firstInput * secondInput)
-    }
-    if(theSymbol === '/'){
-        console.log(firstInput / secondInput)
-    }
-    if(theSymbol === '>'){
-        if(firstInput > secondInput){
-            console.log('true')
-        }else console.log('false')
-    }
-    if(theSymbol === '<'){
-        if(firstInput < secondInput){
-            console.log('true')
-        }else console.log('false')
-    }
-    if(theSymbol === '==='){
-        if(firstInput === secondInput){
-            console.log('true')
-        }else console.log('false')
-    }
-    if(theSymbol === '!=='){
-        if(firstInput !== secondInput){
-            console.log('true')
-        }else console.log('false')
-    }
+    // else if(){
+
+    // }
+    else console.log('Syntax error')
 }
 
 const startNode=()=>{
