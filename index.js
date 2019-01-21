@@ -5,9 +5,20 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-function doMath () {
+const variable = {
+  name: "",
+  value: ""
+}
+
+function doMath() {
    rl.question('', (answer) => {
     var newArr = answer.split(' ');
+    if (newArr[0] === 'let'){
+      variable.name = newArr[1];
+      variable.value = newArr[3];
+    } else if (newArr[0] === variable.name){
+      console.log(variable.value)
+    } else {
     var num1 = Number(newArr[0]);
     var operator = newArr[1];
     var num2 = Number(newArr[2]);
@@ -37,7 +48,9 @@ function doMath () {
       } else {
         console.log(false)
       }
-    } 
+    }
+  } 
+    doMath();
   });
 }
 
