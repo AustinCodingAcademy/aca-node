@@ -6,12 +6,14 @@ Anyone can create a program that interprets input as code, processes it accordin
 Write a program that will use readline to take user input.
 The input will follow certain rules which is our syntax.
 * Calculator
-  * The input will be similiar to  `x + y`. We can add, subtract, multiply or divide. Determine the 2 numbers, 
-determine the math operator and output the result
+  * The input will be similar to  `x + y`. We can add, subtract, multiply or divide. Determine the 2 numbers, determine the math operator and output the result
+
 * Bool
   * The input will be `X > Y`. We can compare <, >, ===, !==. return `true` or `false`
+
 * Variable
   * The input will be `let whatever = “something”`, if the user then types in the variable name, it should print it back out
+  
 * Bonus
   * Combine the functionality so you can assign a bool or number into a variable
 
