@@ -8,20 +8,7 @@ const rl = readline.createInterface({
 //placeholders for user input
 
 let answer = "";
-var valid = [
-  "+",
-  "add",
-  "plus",
-  "-",
-  "minus",
-  "subtract",
-  "*",
-  "x",
-  "multiply",
-  "/",
-  "%",
-  "divide"
-];
+
 
 function askName(){
   rl.question(`What is your name? `, name => {
