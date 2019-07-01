@@ -3,6 +3,7 @@ const add = require("./modules/add");
 const subtract = require("./modules/subtract");
 const multiply = require("./modules/multiply");
 const divide = require("./modules/divide");
+const assignVariable = require("./modules/assignVariable");
 const {lessThan, greaterThan, isEqual, isNotEqual} = require("./modules/boolean");
 
 const rl = readline.createInterface({
@@ -29,12 +30,14 @@ function determineOperator(string){
     }
     else if(operation == '=' || operation == '!'){
         let boolOp = string.slice(opLocStart, opLocBoolEnd);
-        console.log(boolOp);
         if(boolOp == '==='){
             return ["===", opLocStart];
         }
         else if(boolOp == '!=='){
             return ["!==", opLocStart];
+        }
+        else if (operation == '='){
+            return ['=', opLocStart];
         }
         else{
             return false;
@@ -66,16 +69,29 @@ function calculate(answer){
                 isNotEqual(num1, num2);
             }
         }
+        
         else{
             let charAfterOp = location + 1;
             let num1Str = expression.slice(0, location).trim();
+            let varName = num1Str;
             let num2Str = expression.slice(charAfterOp, expression.length).trim()
             let num1 = Number(num1Str);
             let num2 = Number(num2Str);
-            if(!num1 || !num2){
+            if(operation == '='){
+                if (num2){
+                    assignVariable(varName, num2)
+                }
+                else {
+                    let string = num2Str.split(/"/)[1];
+                    assignVariable(varName, string);
+                }
+                
+            }
+            else if(!num1 || !num2){
                 console.log("please enter expression in the following format: ")
                 console.log("number operator number")
             }
+            
             else if (operation === '+'){
                 add(num1, num2)
             }
@@ -97,6 +113,11 @@ function calculate(answer){
         }
     }
     else{
-        console.log("please enter valid mathematical oprator");
+        if(global[answer]){
+            console.log(global[answer]);
+        }
+        else{
+            console.log("please enter valid mathematical oprator");
+        }
     }
 }
