@@ -5,28 +5,26 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
+let createVariable = (input) => {
+    let inputArray = input.split(' ');
+    let keyWord = inputArray[1];
+    let variable = inputArray[3];
+    global[keyWord] = variable;
+}
+
 let recursivePrompt = () => {
     rl.question('Input:', (answer) => {
-        let results = answer;
-        results = eval(answer);
-        console.log(results);
-        console.log(typeof results);
-        results === typeof 'boolean' || typeof 'number'
-            ? console.log(results)
-            : console.log('something else');
-        recursivePrompt();
+        if (answer.startsWith('let') || answer.startsWith('const')) {
+            createVariable(answer);
+            return recursivePrompt();
+        } else if (returnType === typeof 'boolean' || typeof 'number') {
+            console.log(eval(answer));
+            return recursivePrompt();
+        } else { 
+            console.log('Syntax Error');
+            return recursivePrompt();
+        }
     });
 }
 
-recursivePrompt();
-
-// let processInput = (input) => {
-//     let inputArray = input.split('');
-//     inputArray.forEach(x => parseInt(x));
-//     let numberRegEx = /[0-9]/;
-//     let symbolIdx = inputArray.indexOf(x => {x != numberRegEx});
-//     console.log(inputArray);
-//     console.log(symbolIdx);
-// }
-
-// processInput('22+3');
+recursivePrompt()
