@@ -21,7 +21,7 @@ function prompt(){
 prompt();
 
 function determineOperator(string){
-    let regex = /[\/\+\-\*\>\<\={2}\!]/g;
+    let regex = /[\/\+\-\*\>\<\=\!]/g;
     let opLocStart = string.search(regex)
     let opLocBoolEnd = opLocStart+3;
     let operation = string.charAt(opLocStart);
@@ -59,6 +59,7 @@ function calculate(answer){
             let num1 = Number(num1Str);
             let num2 = Number(num2Str);
             if(!num1 || !num2){
+                
                 console.log("please enter expression in the following format: ")
                 console.log("number operation number")
             }
