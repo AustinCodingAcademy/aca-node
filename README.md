@@ -16,3 +16,7 @@ determine the math operator and output the result
   * Combine the functionality so you can assign a bool or number into a variable
 
 If anything else is input that cannot be matched, output `Syntax Error`
+
+
+readline allows user to type input
+split input- look for +,-,*,>,etc
