@@ -1,0 +1,19 @@
+{
+  "name": "aca-node",
+  "version": "1.0.0",
+  "description": "The purpose of this project is to demonstrate that node.js is nothing special.  Anyone can create a program that interprets input as code, processes it accordingly and then outputs something.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomsonkan/aca-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomsonkan/aca-node/issues"
+  },
+  "homepage": "https://github.com/tomsonkan/aca-node#readme"
+}
